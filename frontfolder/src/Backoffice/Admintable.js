@@ -1,13 +1,15 @@
 import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
 
-import { History } from 'history';
-import { createBrowserHistory } from 'history';
+
+
 import { BrowserRouter } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toBeRequired } from '@testing-library/jest-dom/dist/matchers';
 import PageItem from 'react-bootstrap/PageItem'
 import ReactPaginate from 'react-paginate';
+
+import { useHistory } from "react-router-dom";
 export default function AdminTable()
 {
 
@@ -34,26 +36,17 @@ export default function AdminTable()
             
       }, [setIsLoaded==true,projects])
       
-   /* const handleSubmit3 = text  => event => {
-        fetch("http://127.0.0.1:5000/sponsors")
-            .then(res=>res.json())
-            .then(
-                (data) => {
-                  for( let i=0;i<10;i++){
-                  console.log("sponsors"+data[i].img)
-                  }
-                    setsponsors(data);
-                    setIsLoaded(true)
-                   
-                 
-                },
-                (error) => {
-                    
-                    setError(error);
-                }
-            )
+    const handleSubmit4 = text  => event => {
+       
         
-      }*/
+      }
+      const navigate = useHistory();
+      const handleSubmit5 = text  => event => {
+       event.preventDefault()
+       
+       navigate.push("/Update:"+text)
+        
+      }
       const handleSubmit2 = text  => event => {
         event.preventDefault();
         var url="http://localhost:8095/projects/deleteproject/"
@@ -131,8 +124,13 @@ export default function AdminTable()
                         <td><a href={project.project_link}>Link to project</a></td> 
                            
                         <td><button onClick={handleSubmit2(project)}  className="btn btn-danger"><i class="fa fa-eraser"></i></button></td>
-                       <button onClick={handleSubmit3(project.Team.map(e=>(e._id)))} className='btn btn-light'><i class="fa fa-envelope" aria-hidden="true"></i></button> 
-                     
+                      <td> <button onClick={handleSubmit3(project.Team.map(e=>(e._id)))} className='btn btn-light'><i class="fa fa-envelope" aria-hidden="true"></i></button> 
+                      </td>
+                      <td> <button onClick={handleSubmit4(project)} className='btn btn-secondary'><i class="fa fa-tools" ></i></button> 
+                      </td>
+                      <td> <button onClick={handleSubmit5(project._id)} className='btn btn-success'><i class="fa fa-pencil" ></i></button> 
+                      </td>
+
                     </tr>
                     ))}
                       
