@@ -31,6 +31,7 @@ import Login from './components/body/auth/Login';
 import StudentPortal from './Backoffice/StudentPortal';
 import Register from './components/body/auth/Register';
 import ForgotPassword from './components/body/auth/ForgotPassword';
+import UpdateProject from './Backoffice/UpdateProject';
 
 
 
@@ -84,6 +85,7 @@ function App() {
           <Route path ='/student' element={<Home/>}exact><Home/></Route>
           <Route path ='/edit:id' element={<EditStudent/>}exact><EditStudent/></Route>
           <Route path="/upload:id" element={<Upload/>}exact><Upload/></Route>
+          <Route path="/update:id" element={<UpdateProject/>}exact><UpdateProject/></Route>
           </Switch>
           </div>
 
